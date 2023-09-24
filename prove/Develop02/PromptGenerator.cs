@@ -8,11 +8,33 @@
 // GetRandomPrompt() : string
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-class PromptGenerator89iu
+// PromptGenerator class: Supplies random prompts so the user can just reply 
+// to these prompts in form of entry.
+class PromptGenerator
 {
-    static void Main(string[] args)
+    private List<string> _prompts;
+
+    public PromptGenerator()
     {
-        Console.WriteLine("Hello Develop02 World!");
+         _prompts = new List<string>();
+         _prompts.Add("What are you grateful for today?");
+         _prompts.Add("What is something you learned today?");
+         _prompts.Add("What is something you want to achieve tomorrow?");
+         _prompts.Add("How are you feeling right now?");
+         _prompts.Add("What is your favorite memory from this day?");
     }
+
+    // Returns a random prompt from the _prompts list using Random.Next
+    public string GetRandomPrompt()
+    {
+        Random rnd = new Random();
+        int index = rnd.Next(_prompts.Count);
+        return _prompts[index];
+    }
+   
+    
 }

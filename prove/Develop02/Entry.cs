@@ -17,11 +17,42 @@
 // METHOD: Display() : void
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-class Entry
+// Entry class: Represents a single journal entry.
+public class Entry
 {
-    static void Main(string[] args)
+    // ATRIBUTES==============================================================
+    private string  _date; 
+    private string _promptText; 
+    private string _entryText; 
+
+    // BEHAVIOR================================================================
+    public Entry(string date, string promptText, string entryText)
     {
-        Console.WriteLine("Hello Develop02 World!");
+        _date = date;
+        _promptText = promptText;
+        _entryText = entryText;
     }
+    // METHOD===================================================================
+    // Displays the entry in a formatted way 
+    public void Display()
+    {
+        Console.WriteLine("Date: " + _date);
+        Console.WriteLine("Prompt: " + _promptText);
+        Console.WriteLine("Entry: " + _entryText);
+        Console.WriteLine();
+    }
+    // Returns a string representation of the entry using '|' as a separator
+    public string TodayEntry()
+    {
+        string entrada = $"{_date} | {_promptText} | {_entryText}";
+        return entrada;
+    }
+
+
+
+
 }

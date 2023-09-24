@@ -17,11 +17,62 @@
 // LoadFromFile(file : string)
 
 using System;
-
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 class Journal
 {
-    static void Main(string[] args)
+    private List<Entry> _entries;
+
+    public Journal()
     {
-        Console.WriteLine("Hello Develop02 World!");
+        _entries = new List<Entry>();
     }
+    // Adds a new entry to the _entries list
+    public void AddEntry(Entry newEntry);
+    {
+        _entries.Add(newEntry);
+    }
+    // Displays all the entries in the _entries list by calling their Display method
+    public void DisplayAll()
+    {
+        foreach (Entry entrada in _entries)
+        {
+          entrada.Display();  
+        }
+    }
+
+    // Saves the _entries list to a file using StreamWriter
+    public void SaveToFile(string file)
+    {
+        using (StreamWriter sw = new StreamWriter(file))
+        {
+            foreach (Entry entrada in _entries)
+            {
+                sw.WriteLine(entrada.TodayEntry());
+            }
+        }    
+    }
+    // Loads the _entries list from a file using StreamReader
+    public void LoadFromFile(string file)
+    {
+        using (StreamReader sr = new StreamReader(file))
+        {
+            string line;
+            while ((line = sr.ReadLine()) !=null)
+            {
+                string[] parts = line.Split(" | ");
+                if (parts.Length == 3)
+                {
+                    Entry entrada = new Entry(parts[0], parts[1], parts[2]);
+                    _entries.Add(entrada);
+                }
+            }
+        }
+    }
+ 
+
+
+
+
 }
