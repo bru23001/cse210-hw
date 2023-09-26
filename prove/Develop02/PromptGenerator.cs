@@ -16,22 +16,24 @@ using System.Linq;
 // to these prompts in form of entry.
 class PromptGenerator
 {
-    private List<string> _prompts;
+    private readonly List<string> _prompts;
 
     public PromptGenerator()
     {
-         _prompts = new List<string>();
-         _prompts.Add("What are you grateful for today?");
-         _prompts.Add("What is something you learned today?");
-         _prompts.Add("What is something you want to achieve tomorrow?");
-         _prompts.Add("How are you feeling right now?");
-         _prompts.Add("What is your favorite memory from this day?");
+         _prompts = new List<string>
+         {
+             "What are you grateful for today?",
+             "What is something you learned today?",
+             "What is something you want to achieve tomorrow?",
+             "How are you feeling right now?",
+             "What is your favorite memory from this day?"
+         };
     }
 
     // Returns a random prompt from the _prompts list using Random.Next
     public string GetRandomPrompt()
     {
-        Random rnd = new Random();
+        Random rnd = new();
         int index = rnd.Next(_prompts.Count);
         return _prompts[index];
     }

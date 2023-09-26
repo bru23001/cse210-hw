@@ -27,7 +27,11 @@ public class Entry
     // ATRIBUTES==============================================================
     private string  _date; 
     private string _promptText; 
-    private string _entryText; 
+    private string _entryText;
+
+    public Entry()
+    {
+    }
 
     // BEHAVIOR================================================================
     public Entry(string date, string promptText, string entryText)

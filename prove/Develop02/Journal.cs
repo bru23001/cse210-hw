@@ -22,18 +22,18 @@ using System.IO;
 using System.Linq;
 class Journal
 {
-    private List<Entry> _entries;
+    private readonly List<Entry> _entries;
 
     public Journal()
     {
         _entries = new List<Entry>();
     }
     // Adds a new entry to the _entries list
-    public void AddEntry(Entry newEntry);
+    public void AddEntry(Entry newEntry)
     {
         _entries.Add(newEntry);
     }
-    // Displays all the entries in the _entries list by calling their Display method
+
     public void DisplayAll()
     {
         foreach (Entry entrada in _entries)
@@ -45,21 +45,37 @@ class Journal
     // Saves the _entries list to a file using StreamWriter
     public void SaveToFile(string file)
     {
-        using (StreamWriter sw = new StreamWriter(file))
+        if (string.IsNullOrEmpty(file))
+        {
+            Console.WriteLine("Invalid file name.");
+            return;
+        }
+        using (StreamWriter outputFile = new StreamWriter(file))
         {
             foreach (Entry entrada in _entries)
             {
-                sw.WriteLine(entrada.TodayEntry());
+                outputFile.WriteLine(entrada.TodayEntry());
             }
         }    
     }
     // Loads the _entries list from a file using StreamReader
     public void LoadFromFile(string file)
     {
-        using (StreamReader sr = new StreamReader(file))
+        if (string.IsNullOrEmpty(file))
+        {
+           Console.WriteLine("Invalid file name.");
+           return; 
+        }
+
+        if (!File.Exists(file))
+        {
+            Console.WriteLine("File not found.");
+            return;
+        }
+        using (StreamReader inputFile = new StreamReader(file))
         {
             string line;
-            while ((line = sr.ReadLine()) !=null)
+            while ((line = inputFile.ReadLine()) !=null)
             {
                 string[] parts = line.Split(" | ");
                 if (parts.Length == 3)
