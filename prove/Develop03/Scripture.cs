@@ -40,21 +40,24 @@ be easily changed in the future, if a different implementation choice were made.
 -Scripture(reference : Reference, text : string)
 */
 using System;
+using System.Net.Http.Headers;
 public class Scripture
 {
     //OBJECT ATTRIBUTES====================================
     private Reference _reference;
     private List<Word> _words;
 
+
     //CONTRUCTOR=====================================
-    public Scripture(Reference reference, string words)
+    public Scripture(Reference reference, List<Word> words)
     {
-        _reference = Reference;
+        
+        _reference = reference;
         _words = words;
     }
 
     //METHODS========================================
-    
+
     public void HideRandomWords(int numberToHide)
     {
         //list of indexes of words not hidden

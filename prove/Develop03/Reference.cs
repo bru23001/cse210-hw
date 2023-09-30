@@ -29,7 +29,7 @@ Reference(book:string, chapter:int, verse:int)
 Reference(book:string, chapter:int, verse:int, endVerse:int)
 */
 
-using (System);
+using System;
 
 public class Reference
 {
