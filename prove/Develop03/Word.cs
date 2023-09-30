@@ -23,3 +23,40 @@ shown or hidden). Notice that you should not need to pass in the visibility of t
 be set to be visible by default.
 
 -Word(text : string)
+*/
+public class Word
+{
+    private string _text;
+    private bool _isHidden;
+    
+    public Word(string text)
+    {
+        _text = text;
+        _isHidden = false;
+    }
+
+    public void Hide()
+    {
+        _isHidden = true;
+    }
+
+    public string GetDisplayText()
+    {
+    // Check if _isHidden is true or false
+    if (_isHidden)
+    {
+        // If _isHidden is true, return "_____"
+        return "_____";
+    }
+    else
+    {
+        // If _isHidden is false, return the value of _text
+        return _text;
+    }
+    }
+
+    public bool IsHidden()
+    {
+        return _isHidden;
+    }
+}
