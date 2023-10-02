@@ -40,7 +40,7 @@ be easily changed in the future, if a different implementation choice were made.
 -Scripture(reference : Reference, text : string)
 */
 using System;
-using System.Net.Http.Headers;
+using System.Linq;
 public class Scripture
 {
     //OBJECT ATTRIBUTES====================================
@@ -51,25 +51,27 @@ public class Scripture
     //CONTRUCTOR=====================================
     public Scripture(Reference reference, List<Word> words)
     {
-        
         _reference = reference;
         _words = words;
     }
 
     //METHODS========================================
 
+    
+
+
     public void HideRandomWords(int numberToHide)
     {
+        int max = _words.Count;
+        int numberToHide = 5;
         //list of indexes of words not hidden
         List<int>notHiddenIndexes = new List<int>();
 
         //loop through all the words in the list
-        int i = 0;
+        
 
-        for (i < _words.Count)
+        for (int i = 0; i < max; i++)
         {
-            i++;
-
             if (!_words[i].IsHidden)
             {
                 notHiddenIndexes.Add(i);
