@@ -40,6 +40,7 @@ be easily changed in the future, if a different implementation choice were made.
 -Scripture(reference : Reference, text : string)
 */
 using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 public class Scripture
 {
@@ -49,9 +50,16 @@ public class Scripture
 
 
     //CONTRUCTOR=====================================
-    public Scripture(Reference reference, List<Word> words)
+    public Scripture(Reference reference, string text)
     {
         _reference = reference;
+        string[] splitText = text.Split(' ');
+        List<Word> words = new List<Word>();
+        foreach (string word in splitText)
+        {
+            Word newWord = new Word(word);
+            words.Add(newWord);
+        }
         _words = words;
     }
 
@@ -62,60 +70,44 @@ public class Scripture
 
     public void HideRandomWords(int numberToHide)
     {
-        int max = _words.Count;
-        int numberToHide = 5;
-        //list of indexes of words not hidden
-        List<int>notHiddenIndexes = new List<int>();
+        Random random = new Random();
 
-        //loop through all the words in the list
-        
 
-        for (int i = 0; i < max; i++)
+        for (int i = 0; i < numberToHide; i++)
         {
-            if (!_words[i].IsHidden)
-            {
-                notHiddenIndexes.Add(i);
-            }
-        }
-
-        //generate random word indexes and hide that word
-        
-        while (numberToHide > 0 && notHiddenIndexes.Count > 0)
-        {
-            int randomIndex = random.Next(notHiddenIndexes.Count);
-            int wordIndex = notHiddenIndexes[randomIndex];
-            _words[wordIndex].IsHidden = true;
-            notHiddenIndexes.RemoveAt(randomIndex);
-            numberToHide--;
+            int indexToHide = random.Next(_words.Count);
+            _words[indexToHide].Hide();
         }
     }
-    
+
+
     public string GetDisplayText()
     {
-        string referenceText = _reference.GetDisplayText();
-        List<string>wordTexts = new List<string>();
-        foreach (string word in _words)
-        {
-            wordTexts.Add(word.GetDisplayText()); 
-        }
-        string allWordsText = "";
-        foreach (word in wordTexts)
-        {
-            allWordsText += wordTexts + "";
-        }    
-            
-        allWordsText=allWordsText.TrimEnd();
+        List<string> displayTexts = new List<string>();
 
-        string resultText = referenceText + "\n" + allWordsText;
+        foreach (Word word in _words)
+        {
+            string displayText = word.GetDisplayText();
+            displayTexts.Add(displayText);
+        }
+
+        string resultText = string.Join(" ", displayTexts);
 
         return resultText;
+
     }
 
     public bool IsCompletelyHidden()
     {
-        return _words.All(words => words.IsHidden);
+        foreach (Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                return false;
+            }
+            
+        }
+        return true;
     }
-
 }
-
 

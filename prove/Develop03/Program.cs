@@ -17,13 +17,14 @@ select from only those words that are not already hidden.)
 
 4. 😀 How does the program end?: When all words in the scripture are hidden, the program should end. If the 
 user types quit, the program should end.
+
+5. Uses a class called Scripture, another one called Reference and another one called Word.
 */
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 class Program
 {
 
@@ -40,44 +41,31 @@ class Program
         int verse = 22;
         int endVerse = 23;
         string scriptureText = "Now the Lord had shown unto me, Abraham, the intelligences that were organized before the world was; and among all these there were many of the noble and great ones; And God saw these souls that they were good, and he stood in the midst of them, and he said: These I will make my rulers; for he stood among those that were spirits, and he saw that they were good; and he said unto me: Abraham, thou art one of them; thou wast chosen before thou wast born.";
-
+        int numberToHide = 5;
 
         //create a new instance of Reference class
         Reference reference = new Reference(book, chapter, verse, endVerse);
 
-        // Split the scriptureText string into an array of words
-        List<string> listStringWords = scriptureText.Split(' ').ToList();
-        List<Word> words = new List<Word>(listStringWords.Cast<Word>().ToList());
-        
-        //create a new instance of Scripture class
-        Scripture listWordsObjects = new Scripture(reference, words);
-
-
-    }
-}
-
-       
-
-        
+        Scripture scripture = new Scripture(reference, scriptureText);
 
 
 
-        
-
-
-        
-
+        Console.WriteLine (reference.GetDisplayText() );
+        Console.WriteLine();
         while (!scripture.IsCompletelyHidden())
         {
-            Console.Clear();
             Console.WriteLine(scripture.GetDisplayText());
-            Console.WriteLine("\nPress Enter to hide a word or type 'quit to exit. ");
-            string input = Console.ReadLine();
-            if (input == "quit")
+
+            Console.WriteLine("\nPress Enter to hide words or type 'quit' to exit.");
+            string userInput = Console.ReadLine();
+
+            if (userInput.ToLower() == "quit")
             {
                 break;
             }
-            scripture.HideRandomWords(1);
+        scripture.HideRandomWords(numberToHide);
+        Console.Clear();
+
         }
-    }
-}
+    }    
+}          

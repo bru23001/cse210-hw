@@ -40,13 +40,18 @@ public class Word
         _isHidden = true;
     }
 
+    public void Show()
+    {
+        _isHidden = false;
+    }
+
     public string GetDisplayText()
     {
     // Check if _isHidden is true or false
     if (_isHidden)
     {
         // If _isHidden is true, return "_____"
-        return "_____";
+        return new string ('_', _text.Length);
     }
     else
     {
@@ -60,3 +65,5 @@ public class Word
         return _isHidden;
     }
 }
+
+
