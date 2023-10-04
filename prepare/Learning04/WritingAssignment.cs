@@ -23,7 +23,7 @@ public class WritingAssignment : Assignment
 
     public string GetWritingInformation()
     {
-        return _title + " by "+ _studentName;    
+        return "title: " + _title + " by "+ _studentName;    
     }
 
 }
