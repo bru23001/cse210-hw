@@ -4,11 +4,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        MathHomework mathHomework = new MathHomework("Math HW1", "10/10/2023", "John Doe", "Fractions", "7.3", "3-10, 20-21");
-        mathHomework.Display();
+        Assignment assignment1 = new Assignment("Victor J. Brun", "C# Language: Abstration");
+        Console.WriteLine(assignment1.GetSummary());
 
-        WritingHomework writingHomework = new WritingHomework("Writing HW1", "10/11/2023", "Jane Doe", "European History");
-        writingHomework.Display();
+        MathAssignment assignment2 = new MathAssignment("Elvis Presley", "C# Language: Encapsulation", "3.a, 5.b-d");
+        Console.WriteLine(assignment2.GetHomeworkList());
+
+        WritingAssignment assignment3 = new WritingAssignment("Freddy Mercury", "C# Language: Inheritance", "Liskov Substitution Principle");
+        Console.WriteLine(assignment3.GetWritingInformation());
     }
 }
 

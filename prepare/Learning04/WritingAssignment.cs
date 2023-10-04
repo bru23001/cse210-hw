@@ -10,31 +10,20 @@
    GetStudentName method to return it.
 */
 
-using System;
 
 // Derived class for Writing assignments
 public class WritingAssignment : Assignment
 {
     private string _title;
 
-    public WritingAssignment(string title) : base(studentName, topic)
+    public WritingAssignment(string studentName, string topic, string title) : base(studentName, topic)
     {
-        _studentName = studentName;
-        _topic = topic;
+        _title = title;
     }
 
     public string GetWritingInformation()
     {
-        return $" {GetStudentName()} + "-"+ _topic\n_textbookSection + "by" _studentName;    
+        return _title + " by "+ _studentName;    
     }
 
-    /*public string GetWritingInfo()
-    {
-        return $"{Title} by {StudentName}";
-    }
-
-    public override void Display()
-    {
-        Console.WriteLine($"Writing Homework: {Title}, Due: {DueDate}, Student: {StudentName}, Topic: {Topic}");
-    }*/
 }

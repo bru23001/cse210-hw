@@ -9,15 +9,14 @@
 
 */
 
-using System;
 
 // Base class
-public class Assignmet
+public class Assignment
 {
-    private string _studentName 
-    private string _topic
+    protected string _studentName; 
+    private string _topic;
 
-    public Assignmet(string studentName, string topic)
+    public Assignment(string studentName, string topic)
     {
         _studentName = studentName;
         _topic = topic;
@@ -25,6 +24,6 @@ public class Assignmet
 
     public string GetSummary()
     {
-        return $_studentName + "-"+ _topic;
+        return _studentName + " - "+ _topic;
     }
 }

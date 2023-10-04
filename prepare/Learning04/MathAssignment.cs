@@ -8,7 +8,6 @@
 5) Add the GetHomeworkList() method.
 */
 
-using System;
 
 // Derived class for Math assignments
 public class MathAssignment : Assignment
@@ -17,22 +16,17 @@ public class MathAssignment : Assignment
     private string _problems;
     
 
-    public MathAssignment(string textbookSection, string problems) : base(studentName, topic)
+    public MathAssignment(string studentName, string topic, string textbookSection, string problems) : base(studentName, topic)
     {
         {
             _textbookSection = textbookSection;
             _problems = problems;
         }
     }
-    public string GetSummary()
+    public string GetHomeworkList()
     {
-        return $_studentName + "-"+ _topic\n_textbookSection + _problems;    
+        return _textbookSection + " " + _problems;    
     }
-    /*
-    public override void Display()
-    {
-        Console.WriteLine($"Math Homework: {Title}, Due: {DueDate}, Student: {StudentName}, Topic: {Topic}, Section: {TextbookSection}, Problems: {Problems}");
-    }
-    */
+    
 }
 
