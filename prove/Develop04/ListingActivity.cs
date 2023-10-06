@@ -69,28 +69,29 @@ class ListingActivity : Activity
 
     public ListingActivity(string name, string description) : base(name, description)
     {
-         Console.WriteLine();
     }
 
-        private string GetRandomPrompt()
+    private string GetRandomPrompt()
+    {
+        _prompts = new List<string>
         {
-            _prompts = new List<string>
-            {
-                "Who are people that you appreciate?",
-                "What are personal strengths of yours?",
-                "Who are people that you have helped this week?",
-                "When have you felt the Holy Ghost this month?",
-                "Who are some of your personal heroes?"
-            };
+            "Who are people that you appreciate? ",
+            "What are personal strengths of yours? ",
+            "Who are people that you have helped this week? ",
+            "When have you felt the Holy Ghost this month? ",
+            "Who are some of your personal heroes? "
+        };
 
-            int index = _random.Next(_prompts.Count);
-            return _prompts[index];
-        }   
+        int index = _random.Next(_prompts.Count);
+        return _prompts[index];
+    }   
 
         private List<string> GetListFromUser()
         {
             Console.WriteLine("Enter as many items, one by one, in the alloted time. Type 'done' if finished.");
-            
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
 
             List<string>_responses = new List<string>();
 
@@ -101,14 +102,16 @@ class ListingActivity : Activity
         public void Run()
         {
             string prompt = GetRandomPrompt();
-            Console.WriteLine(prompt);
+            Console.Write(prompt);
+            ShowSpinner();
+            Console.WriteLine();
+            Console.WriteLine();
 
             List<string>responses = GetListFromUser();
             string input;
             
             int duration = Duration();
 
-            ShowCountDown(10);
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -117,10 +120,14 @@ class ListingActivity : Activity
             {
                 responses.Add(input);
             }
-            
-            DisplayEndingMessage();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
 
             Console.WriteLine("$You entered {responses.Count} responses in this session.");
+
+            DisplayEndingMessage();
+
         }
 
     

@@ -90,10 +90,23 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
+        bool brexit = true;
         
-        int userOption = GetMenu();
-        LoopMenu(userOption);
+        while (brexit)
+        {
+            int userOption = GetMenu();
+            LoopMenu(userOption);
+            Console.WriteLine();
+            Console.WriteLine("Do you want to try another activity? Y/N: ");
+            string userInput = Console.ReadLine();
+            if (userInput.ToLower() == "n")
+            {
+                brexit = false;
+            }
 
+            Console.Clear();
+        }
     }
         
     static void LoopMenu(int userOption)
@@ -127,19 +140,20 @@ class Program
             return;
         }
 
-        }    
-        static int GetMenu()
-        {
-            Console.WriteLine("Menu Options:");
-            Console.WriteLine("1. Start breathing activity");
-            Console.WriteLine("2. Start reflecting activity");
-            Console.WriteLine("3. Start listing activity");
-            Console.WriteLine("4. Quit");
-            Console.Write("Select a choice from the menu: ");
+    }    
+    static int GetMenu()
+    {
+        Console.WriteLine("   ----MENU OPTIONS----");
+        Console.WriteLine();
+        Console.WriteLine("1. Start breathing activity");
+        Console.WriteLine("2. Start reflecting activity");
+        Console.WriteLine("3. Start listing activity");
+        Console.WriteLine("4. Quit");
+        Console.WriteLine();
+        Console.Write("Select a choice from the menu: ");
 
-            int userOption = int.Parse(Console.ReadLine());
+        int userOption = int.Parse(Console.ReadLine());
 
-            return userOption;
-        }
+        return userOption;
     }
 }

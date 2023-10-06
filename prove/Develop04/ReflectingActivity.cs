@@ -78,58 +78,71 @@ class ReflectingActivity : Activity
     protected Random _random = new();
     public ReflectingActivity(string name, string description) : base (name, description)
 	{
-        Console.WriteLine();
     }    
         
     private string GetRandomPrompt()
     {
         _prompts = new List<string>
          {
-            "Think of a time when you stood up for someone else.",
-            "Think of a time when you did something really difficult.",
-            "Think of a time when you helped someone in need.",
-            "Think of a time when you did something truly selfless."
+            "Think of a time when you stood up for someone else. ",
+            "Think of a time when you did something really difficult. ",
+            "Think of a time when you helped someone in need. ",
+            "Think of a time when you did something truly selfless. "
         };
         int index = _random.Next(_prompts.Count);
         return _prompts[index];
+
     }   
 
     private string GetRandomQuestion()
     {
         _questions = new List<string>
         {
-            "Why was this experience meaningful to you?",
-            "Have you ever done anything like this before?",
-            "How did you get started?",
-            "How did you feel when it was complete?",
-            "What made this time different than other times when you were not as successful?",
-            "What is your favorite thing about this experience?",
-            "What could you learn from this experience that applies to other situations?",
-            "What did you learn about yourself through this experience?",
-            "How can you keep this experience in mind in the future?"
+            "Why was this experience meaningful to you? ",
+            "Have you ever done anything like this before? ",
+            "How did you get started? ",
+            "How did you feel when it was complete? ",
+            "What made this time different than other times when you were not as successful? ",
+            "What is your favorite thing about this experience? ",
+            "What could you learn from this experience that applies to other situations? ",
+            "What did you learn about yourself through this experience? ",
+            "How can you keep this experience in mind in the future? "
         };
         int index = _random.Next(_questions.Count);
-        return _questions[index];
+        string question = _questions[index];
+        return question;
     }  
     public void Run()
     {
-        DisplayStartingMessage();
+
         string prompt = GetRandomPrompt();
-        Console.WriteLine(prompt);
-        ShowSpinner();
-        
-        string question = GetRandomQuestion();
-        Console.WriteLine(question);
+        Console.WriteLine("Enter as many items, one by one, in the alloted time. Type 'done' if finished.");
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Console.Write(prompt);
+        ShowCountDown(5);
+
+        Console.WriteLine();
+        Console.WriteLine();
+
         int duration = Duration(); 
+
+        string input;
+
+        List<string> responses = new List<string>();
 
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        while (stopwatch.Elapsed.TotalSeconds < duration)
+        while (stopwatch.Elapsed.TotalSeconds < duration & ((input = Console.ReadLine()) != "done"))
         {
-            Console.WriteLine(GetRandomQuestion());
-            ShowSpinner();
-            ShowSpinner();
+            
+            Console.Write(GetRandomQuestion());
+            input = Console.ReadLine();
+            responses.Add(input);
+            
         }
         
         DisplayEndingMessage();

@@ -32,6 +32,8 @@ Constructors:
 */
 using System;
 using System.Threading;
+using System.Diagnostics;
+
 class BreathingActivity : Activity
 {
     public BreathingActivity(string name, string description) : base(name, description)
@@ -39,23 +41,30 @@ class BreathingActivity : Activity
     }
     public void Run()
     {
-        ShowSpinner();
+        int duration = Duration();
+        int partialDuration = duration/8;
 
-        for (int i = 0; i < _duration; i++)
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+
+        Console.Clear();
+
+        while (stopwatch.Elapsed.TotalSeconds < duration)
         {
-            if (i % 2 == 0)
-            {
-                Console.WriteLine("Breathe in...");
-                ShowCountDown(_duration);
-            }
-            else
-            {
-                Console.WriteLine("Breathe out...");
-            }
-            ShowCountDown(1); // Pause for 1 second
+            Console.Write("Breathe in...");
+            ShowCountDown(partialDuration);
+            Console.Clear();
+
+            Console.Write("Breathe out...");
+            ShowCountDown(partialDuration);
+            Console.Clear();
+
         }
-        DisplayEndingMessage();
+
+        DisplayEndingMessage();   
     }
 }
+
 
 

@@ -32,6 +32,7 @@ Constructors:
 */
 using System;
 using System.Threading;
+using System.Diagnostics;
 
 class Activity
 {
@@ -48,53 +49,84 @@ class Activity
 
     public void DisplayStartingMessage()
     {
+        Console.Clear();
+
         Console.WriteLine($"Starting {_name} activity. {_description}");
-        Console.WriteLine("Enter the duration in seconds: ");
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Console.Write("Enter the duration in seconds: ");
+
         _duration = int.Parse(Console.ReadLine());
-        Console.WriteLine("We'll begin in 5 seconds...");
-        ShowSpinner();
-    }
+
+        int seconds = 5;
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        while (seconds > 0)
+        {
+            Console.Write($"We'll begin in {seconds} seconds... ");
+            Thread.Sleep(1000);
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth - 1));
+            Console.SetCursorPosition(0, Console.CursorTop);
+            seconds--;
+        }    
+    }   
 
     public int Duration()
     {
         return _duration;
     }
-    public void ShowCountDown(int totalDuration)
+    public void ShowCountDown(int partialDuration)
     {
         
-        int partialDuration = totalDuration/8;
-
         for (int i = partialDuration; i > 0; i--)
         {
-            Console.WriteLine(i);
+            Console.Write(i);
             Thread.Sleep(1000);
+            Console.Write("\b \b");
             
         }
     }
 
     public void ShowSpinner()    
     {
-        Console.Write("|"); 
-        Thread.Sleep(1000);
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
 
-        Console.Write("/");
-        Thread.Sleep(1000);
+        while (stopwatch.Elapsed.TotalSeconds < 5)
+        {
+            Console.Write("|"); 
+            Thread.Sleep(100);
+            Console.Write("\b \b");
 
-        Console.Write("--");
-        Thread.Sleep(1000);
+            Console.Write("/");
+            Thread.Sleep(100);
+            Console.Write("\b \b");
 
-        Console.Write("\\");
-        Thread.Sleep(1000);
+            Console.Write("-");
+            Thread.Sleep(100);
+            Console.Write("\b \b");
 
-        Console.Write("|");
-        Thread.Sleep(1000);
+            Console.Write("\\");
+            Thread.Sleep(100);
+            Console.Write("\b \b");
 
+        }
     }
 
     public void DisplayEndingMessage()
     {
+        Console.Clear();
         Console.WriteLine("Well done!!");
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
         Console.WriteLine($"You have completed another {_duration} seconds of the {_name} activity.");
-        ShowSpinner();
+
     }
 }
