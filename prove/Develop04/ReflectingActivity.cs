@@ -70,21 +70,32 @@ Constructors:
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
 class ReflectingActivity : Activity
 {
-    private List<string> _prompts;
-    private List<string> _questions;
-    private Random _random;
-    public ReflectingActivity(string name, string description, int duration) : base (name, description, duration);
+    protected List<string> _prompts;
+    protected List<string> _questions;
+    protected Random _random = new();
+    public ReflectingActivity(string name, string description) : base (name, description)
 	{
+        Console.WriteLine();
+    }    
+        
+    private string GetRandomPrompt()
+    {
         _prompts = new List<string>
-        {
+         {
             "Think of a time when you stood up for someone else.",
             "Think of a time when you did something really difficult.",
             "Think of a time when you helped someone in need.",
             "Think of a time when you did something truly selfless."
         };
-        
+        int index = _random.Next(_prompts.Count);
+        return _prompts[index];
+    }   
+
+    private string GetRandomQuestion()
+    {
         _questions = new List<string>
         {
             "Why was this experience meaningful to you?",
@@ -97,34 +108,29 @@ class ReflectingActivity : Activity
             "What did you learn about yourself through this experience?",
             "How can you keep this experience in mind in the future?"
         };
-
-        _random = new Random();
-    }    
-    private string GetRandomPrompt()
-    {
-        int index = _random.Next(_prompts.Count);
-        return _prompts[index];
-    }
-
-    private string GetRandomQuestion()
-    {
-        int index = random.Next(_questions.Count);
+        int index = _random.Next(_questions.Count);
         return _questions[index];
-    }
-
+    }  
     public void Run()
     {
         DisplayStartingMessage();
         string prompt = GetRandomPrompt();
         Console.WriteLine(prompt);
+        ShowSpinner();
+        
+        string question = GetRandomQuestion();
+        Console.WriteLine(question);
+        int duration = Duration(); 
 
-        int startTime = Environment.TickCount;
-        while(Environment.TickCount - startTime < _duration * 1000)
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        while (stopwatch.Elapsed.TotalSeconds < duration)
         {
-            stringquestion = GetRandomQuestion();
-            Console.WriteLine(question);
-            
-            ShowSpinner(3); // Pause for 3 seconds}
+            Console.WriteLine(GetRandomQuestion());
+            ShowSpinner();
+            ShowSpinner();
+        }
         
         DisplayEndingMessage();
     }

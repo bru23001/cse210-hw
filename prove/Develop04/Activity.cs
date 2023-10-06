@@ -29,23 +29,21 @@ Constructors:
     You could use setters or pass them to the base base class constructor 
     directly.
 
-
-Based on your specifications, here's how you could define the `Activity` base class in C#:
 */
 using System;
 using System.Threading;
 
-public class Activity
+class Activity
 {
     protected string _name;
     protected string _description;
-    protected int _duration;
+    public int _duration = 0;
 
-    public Activity(string name, string description, int duration)
+
+    public Activity(string name, string description)
     {
         _name = name;
         _description = description;
-        _duration = duration;
     }
 
     public void DisplayStartingMessage()
@@ -54,23 +52,26 @@ public class Activity
         Console.WriteLine("Enter the duration in seconds: ");
         _duration = int.Parse(Console.ReadLine());
         Console.WriteLine("We'll begin in 5 seconds...");
-        ShowCountDown(_duration);
+        ShowSpinner();
+    }
 
-        return;
-
+    public int Duration()
+    {
+        return _duration;
     }
     public void ShowCountDown(int totalDuration)
-        {
-            
-            int partialDuration = totalDuration/8;
+    {
+        
+        int partialDuration = totalDuration/8;
 
-            for (int i = partialDuration; i > 0; i--)
-            {
-                Console.WriteLine(i);
-                Thread.Sleep(1000);
-                return;
-            }
+        for (int i = partialDuration; i > 0; i--)
+        {
+            Console.WriteLine(i);
+            Thread.Sleep(1000);
+            
         }
+    }
+
     public void ShowSpinner()    
     {
         Console.Write("|"); 
@@ -90,37 +91,10 @@ public class Activity
 
     }
 
-    
-
     public void DisplayEndingMessage()
     {
-        Console.WriteLine("You have done a good job!");
-        Console.WriteLine($"You have completed the {_name} activity for {_duration} seconds.");
+        Console.WriteLine("Well done!!");
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_name} activity.");
+        ShowSpinner();
     }
-
-    public static implicit operator string(Activity v)
-    {
-        throw new NotImplementedException();
-    }
-
-   // public void ShowSpinner(int seconds)
-    {
-        //for (int i = 0; i < seconds; i++)
-        {
-            Console.Write(".");
-            Thread.Sleep(1000);
-        }
-        Console.WriteLine();
-    }
-
-    
-
-    
 }
-/*
-This class includes methods for displaying starting and ending messages, showing a spinner, and showing a countdown timer. The `DoActivity` method is abstract and must be implemented in each derived class. The `_name`, `_description`, and `_duration` attributes are initialized in the constructor.
-
-Please note that this is a basic structure and does not include all of your requirements such as logging activities, ensuring no duplicate prompts/questions, saving/loading a log file, or adding animations. You would need to implement these features according to your specific needs.
-
-Also, please remember to handle exceptions properly in your code (for example, when parsing integers), which is not shown in this basic example.
-*/

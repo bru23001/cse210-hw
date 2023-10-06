@@ -59,58 +59,70 @@ Constructors:
 */
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 class ListingActivity : Activity
 {
-    private List<string> _prompts;
-    private Random _random;
+    protected List<string> _prompts;
+    protected Random _random = new();
 
-    public ListingActivity(string name, string description, int duration) : base(name, description, duration);
+    public ListingActivity(string name, string description) : base(name, description)
     {
-        _prompts = new List<string>
-        {
-            "Who are people that you appreciate?",
-            "What are personal strengths of yours?",
-            "Who are people that you have helped this week?",
-            "When have you felt the Holy Ghost this month?",
-            "Who are some of your personal heroes?"
-        };
-
-        _random = new Random();
+         Console.WriteLine();
     }
 
-    private string GetRandomPrompt()
-    {
-        int index = _random.Next(_prompts.Count);
-        return _prompts[index];
-    }
-
-    private List<string> GetListFromUser()
-    {
-        Console.WriteLine("Enter items one by one. Type 'done' when finished.");
-        string input;
-
-        List<string>responses = new List<string>();
-
-        while ((input = Console.ReadLine()) != "done")
+        private string GetRandomPrompt()
         {
-            responses.Add(input);
+            _prompts = new List<string>
+            {
+                "Who are people that you appreciate?",
+                "What are personal strengths of yours?",
+                "Who are people that you have helped this week?",
+                "When have you felt the Holy Ghost this month?",
+                "Who are some of your personal heroes?"
+            };
+
+            int index = _random.Next(_prompts.Count);
+            return _prompts[index];
+        }   
+
+        private List<string> GetListFromUser()
+        {
+            Console.WriteLine("Enter as many items, one by one, in the alloted time. Type 'done' if finished.");
+            
+
+            List<string>_responses = new List<string>();
+
+            return _responses;
         }
-        return responses;
-    }
 
-    public void Run()
-    {
-        DisplayStartingMessage();
-        string prompt = GetRandomPrompt();
-        Console.WriteLine(prompt);
-        
-        ShowCountDown(3); // Countdown for 3 seconds
-        List<string> responses = GetListFromUser();
-        
-        Console.WriteLine($"You listed {responses.Count} items.");
-        
-        DisplayEndingMessage();
-    }
+
+        public void Run()
+        {
+            string prompt = GetRandomPrompt();
+            Console.WriteLine(prompt);
+
+            List<string>responses = GetListFromUser();
+            string input;
+            
+            int duration = Duration();
+
+            ShowCountDown(10);
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            while (stopwatch.Elapsed.TotalSeconds < duration & ((input = Console.ReadLine()) != "done"))
+            {
+                responses.Add(input);
+            }
+            
+            DisplayEndingMessage();
+
+            Console.WriteLine("$You entered {responses.Count} responses in this session.");
+        }
+
+    
 }
 

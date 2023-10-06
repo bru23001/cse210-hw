@@ -90,36 +90,42 @@ class Program
 {
     static void Main(string[] args)
     {
+        
+        int userOption = GetMenu();
+        LoopMenu(userOption);
+
+    }
+        
+    static void LoopMenu(int userOption)
+    {
+        if (userOption == 1)
         {
-            int userOption = GetMenu();
-            LoopMenu(userOption);
+            BreathingActivity activity1 = new BreathingActivity("breathing", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
+            activity1.DisplayStartingMessage();
+            activity1.Run();
 
         }
-        static void LoopMenu(int userOption)
+        else if (userOption == 2)
         {
-            if (userOption == 1)
-            {
-                BreathingActivity activity1 = new BreathingActivity("breathing", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.", int duration);
-                activity1.Run();
+            ReflectingActivity activity2 = new ReflectingActivity("reflection", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+            activity2.DisplayStartingMessage();
+            activity2.Run();
+        }
+        else if (userOption == 3)
+        {
+            ListingActivity activity3 = new ListingActivity("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+            activity3.DisplayStartingMessage();
+            activity3.Run();
+        }
+        else if (userOption == 4)
+        {
 
-            }
-            else if (userOption == 2)
-            {
-                activity = new ReflectionActivity();
-            }
-            else if (userOption == 3)
-            {
-                ListingActivity activity3 = new ListingActivity("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-            }
-            else if (userOption == 4)
-            {
-
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice. Please try again.");
-                return;
-            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice. Please try again.");
+            return;
+        }
 
         }    
         static int GetMenu()
@@ -137,17 +143,3 @@ class Program
         }
     }
 }
-
-
-
-    
-
-
-
-
-/*This program creates an abstract `Activity` class with common methods and attributes for starting and ending an activity. It then creates three classes `BreathingActivity`, `ReflectionActivity`, and `ListingActivity` that inherit from the `Activity` class and implement the specific behavior for each type of activity in the `DoActivity` method.
-
-Please note that this is a basic structure and does not include all of your requirements such as logging activities, ensuring no duplicate prompts/questions, saving/loading a log file, or adding animations. You would need to implement these features according to your specific needs.
-
-Also, please remember to handle exceptions properly in your code (for example, when parsing integers), which is not shown in this basic example.
-*/

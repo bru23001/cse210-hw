@@ -34,29 +34,28 @@ using System;
 using System.Threading;
 class BreathingActivity : Activity
 {
-    public BreathingActivity(string name, string description, int duration) : base(name, description, duration)
+    public BreathingActivity(string name, string description) : base(name, description)
     { 
-        
-       public void Run()
-        {
-            DisplayStartingMessage();
-            ShowSpinner();
+    }
+    public void Run()
+    {
+        ShowSpinner();
 
-            for (int i = 0; i < _duration; i++)
+        for (int i = 0; i < _duration; i++)
+        {
+            if (i % 2 == 0)
             {
-                if (i % 2 == 0)
-                {
-                    Console.WriteLine("Breathe in...");
-                    ShowCountDown(_duration);
-                }
-                else
-                {
-                    Console.WriteLine("Breathe out...");
-                }
-                ShowCountDown(1); // Pause for 1 second
+                Console.WriteLine("Breathe in...");
+                ShowCountDown(_duration);
             }
-            DisplayEndingMessage();
+            else
+            {
+                Console.WriteLine("Breathe out...");
+            }
+            ShowCountDown(1); // Pause for 1 second
         }
+        DisplayEndingMessage();
     }
 }
+
 
