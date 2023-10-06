@@ -91,9 +91,9 @@ class Program
     static void Main(string[] args)
     {
         Console.Clear();
-        bool brexit = true;
+        bool continue = true;
         
-        while (brexit)
+        while (continue)
         {
             int userOption = GetMenu();
             LoopMenu(userOption);
@@ -102,7 +102,7 @@ class Program
             string userInput = Console.ReadLine();
             if (userInput.ToLower() == "n")
             {
-                brexit = false;
+                continue = false;
             }
 
             Console.Clear();
@@ -132,6 +132,8 @@ class Program
         }
         else if (userOption == 4)
         {
+            Console.WriteLine("Quitting...");
+            return;
 
         }
         else

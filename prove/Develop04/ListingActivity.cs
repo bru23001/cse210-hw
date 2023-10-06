@@ -124,7 +124,7 @@ class ListingActivity : Activity
             Console.WriteLine();
             Console.WriteLine();
 
-            Console.WriteLine("$You entered {responses.Count} responses in this session.");
+            Console.WriteLine($"You entered {responses.Count} responses in this session.");
 
             DisplayEndingMessage();
 

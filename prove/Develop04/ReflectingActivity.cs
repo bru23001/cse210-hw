@@ -140,7 +140,6 @@ class ReflectingActivity : Activity
         {
             
             Console.Write(GetRandomQuestion());
-            input = Console.ReadLine();
             responses.Add(input);
             
         }
