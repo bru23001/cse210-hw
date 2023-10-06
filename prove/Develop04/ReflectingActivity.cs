@@ -1,0 +1,132 @@
+/*
+Responsabilities:
+
+    1. The activity should begin with the standard starting message and prompt 
+       for the duration that is used by all activities.
+
+    2. The description of this activity should be something like: "This activity
+       will help you reflect on times in your life when you have shown strength
+       and resilience. This will help you recognize the power you have and how 
+       you can use it in other aspects of your life."
+
+    3. After the starting message, select a random prompt to show the user such as:
+
+        · Think of a time when you stood up for someone else.
+        · Think of a time when you did something really difficult.
+        · Think of a time when you helped someone in need.
+        · Think of a time when you did something truly selfless.
+
+    4. After displaying the prompt, the program should ask the to reflect on 
+       questions that relate to this experience. These questions should be 
+       pulled from a list such as the following:
+
+        · Why was this experience meaningful to you?
+        · Have you ever done anything like this before?
+        · How did you get started?
+        · How did you feel when it was complete?
+        · What made this time different than other times when you were not as successful?
+        · What is your favorite thing about this experience?
+        · What could you learn from this experience that applies to other situations?
+        · What did you learn about yourself through this experience?
+        · How can you keep this experience in mind in the future?
+
+    5. After each question the program should pause for several seconds before 
+       continuing to the next one. While the program is paused it should display
+       a kind of spinner.
+
+    6. It should continue showing random questions until it has reached the 
+       number of seconds the user specified for the duration.
+
+    7. The activity should conclude with the standard finishing message for all
+       activities.
+
+Behaviors: 
+
+		• Run the activity
+        ○ Get a random prompt to show
+		○ Get a random question about the prompt
+		○ Display the prompt
+		○ Display questions about the prompt and get answers
+
+			► Run() : void
+			► GetRandomPrompt() : string
+			► GetRandomQuestion() : string
+			► DisplayPrompt() : void
+			► DisplayQuestions() : void
+
+Attributes:
+
+        should store a list of questions and a list of prompts to draw from.
+
+        	► _prompts : List<string>
+			► _questions : List<string>
+
+Constructors:
+
+    the derived class constructor may be able to set good values in the base 
+    class even if you don't pass parameters to it.
+*/
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+class ReflectingActivity : Activity
+{
+    private List<string> _prompts;
+    private List<string> _questions;
+    private Random _random;
+    public ReflectingActivity(string name, string description, int duration) : base (name, description, duration);
+	{
+        _prompts = new List<string>
+        {
+            "Think of a time when you stood up for someone else.",
+            "Think of a time when you did something really difficult.",
+            "Think of a time when you helped someone in need.",
+            "Think of a time when you did something truly selfless."
+        };
+        
+        _questions = new List<string>
+        {
+            "Why was this experience meaningful to you?",
+            "Have you ever done anything like this before?",
+            "How did you get started?",
+            "How did you feel when it was complete?",
+            "What made this time different than other times when you were not as successful?",
+            "What is your favorite thing about this experience?",
+            "What could you learn from this experience that applies to other situations?",
+            "What did you learn about yourself through this experience?",
+            "How can you keep this experience in mind in the future?"
+        };
+
+        _random = new Random();
+    }    
+    private string GetRandomPrompt()
+    {
+        int index = _random.Next(_prompts.Count);
+        return _prompts[index];
+    }
+
+    private string GetRandomQuestion()
+    {
+        int index = random.Next(_questions.Count);
+        return _questions[index];
+    }
+
+    public void Run()
+    {
+        DisplayStartingMessage();
+        string prompt = GetRandomPrompt();
+        Console.WriteLine(prompt);
+
+        int startTime = Environment.TickCount;
+        while(Environment.TickCount - startTime < _duration * 1000)
+        {
+            stringquestion = GetRandomQuestion();
+            Console.WriteLine(question);
+            
+            ShowSpinner(3); // Pause for 3 seconds}
+        
+        DisplayEndingMessage();
+    }
+}
+    
