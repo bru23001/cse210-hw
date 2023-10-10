@@ -93,7 +93,7 @@ class Activity
         }
     }
 
-    public void ShowSpinner()    
+    public void ShowSpinner(int v)    
     {
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();

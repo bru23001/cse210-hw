@@ -59,9 +59,7 @@ Constructors:
 */
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Diagnostics;
-
 class ListingActivity : Activity
 {
     protected List<string> _prompts;
@@ -103,7 +101,8 @@ class ListingActivity : Activity
         {
             string prompt = GetRandomPrompt();
             Console.Write(prompt);
-            ShowSpinner();
+            ShowSpinner(5);
+
             Console.WriteLine();
             Console.WriteLine();
 

@@ -71,11 +71,14 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+
 class ReflectingActivity : Activity
 {
     protected List<string> _prompts;
     protected List<string> _questions;
     protected Random _random = new();
+
+
     public ReflectingActivity(string name, string description) : base (name, description)
 	{
     }    
@@ -109,8 +112,8 @@ class ReflectingActivity : Activity
             "How can you keep this experience in mind in the future? "
         };
         int index = _random.Next(_questions.Count);
-        string question = _questions[index];
-        return question;
+        string _question = _questions[index];
+        return _question;
     }  
     public void Run()
     {
@@ -120,9 +123,10 @@ class ReflectingActivity : Activity
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine();
+        
 
         Console.Write(prompt);
-        ShowCountDown(5);
+
 
         Console.WriteLine();
         Console.WriteLine();
@@ -132,19 +136,35 @@ class ReflectingActivity : Activity
         string input;
 
         List<string> responses = new List<string>();
+        
 
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
-
         while (stopwatch.Elapsed.TotalSeconds < duration & ((input = Console.ReadLine()) != "done"))
         {
-            
-            Console.Write(GetRandomQuestion());
+            string question = GetRandomQuestion();
+            Console.Write(question);
+
+            ShowSpinner(5);
+
             responses.Add(input);
-            
         }
-        
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
+
         DisplayEndingMessage();
+
     }
+
 }
-    
+
+
+
+
+
+
+
+
+

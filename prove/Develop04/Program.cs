@@ -86,29 +86,35 @@ Select a choice from the menu:
 
 using System;
 using System.Linq.Expressions;
+
 class Program
 {
     static void Main(string[] args)
     {
         Console.Clear();
-        bool continue = true;
         
-        while (continue)
+        bool userContinue = true;
+        while (userContinue)
         {
-            int userOption = GetMenu();
-            LoopMenu(userOption);
-            Console.WriteLine();
-            Console.WriteLine("Do you want to try another activity? Y/N: ");
-            string userInput = Console.ReadLine();
-            if (userInput.ToLower() == "n")
+            int userOption = 0;
+            if (userOption !=4)
             {
-                continue = false;
-            }
+                userOption = GetMenu();
+                LoopMenu(userOption);
+                Console.WriteLine();
+                Console.WriteLine("Do you want to try another activity? Y/N: ");
+                string userInput = Console.ReadLine();
 
-            Console.Clear();
+                if (userInput.ToLower() == "n")
+                {
+                    userContinue = false;
+                }
+            }
         }
+              
+            Console.Clear();
     }
-        
+            
     static void LoopMenu(int userOption)
     {
         if (userOption == 1)
@@ -132,17 +138,17 @@ class Program
         }
         else if (userOption == 4)
         {
-            Console.WriteLine("Quitting...");
             return;
+            
 
         }
         else
         {
             Console.WriteLine("Invalid choice. Please try again.");
-            return;
         }
+    }
 
-    }    
+       
     static int GetMenu()
     {
         Console.WriteLine("   ----MENU OPTIONS----");
