@@ -10,10 +10,10 @@ public class Square : Shape
 {
     private double _side;
 
-    public Square(double side, string color)
+    public Square(double side, string color):base(color)
     {
         _side = side;
-        _color = color;
+        
     }
 
     public override double GetArea()

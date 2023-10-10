@@ -5,19 +5,18 @@
 */
 
 using System;
-using System.Drawing;
 
 class Program
 {
     static void Main(string[] args)
     {
         string figure = "";
-        List<Shape> shapes = new List<Shape>
-        {
-            new Square(5.0, "red"),
-            new Rectangle(4.0, 6.0, "blue"),
-            new Circle(3.0, "green")
-        };
+        List<Shape> shapes = new List<Shape>();
+
+        Square shape1 = new Square(5, "red");
+        Rectangle shape2 = new Rectangle(4,6,"blue");
+        Circle shape3 = new Circle(3, "green");
+        
 
         foreach (Shape shape in shapes)
         {
