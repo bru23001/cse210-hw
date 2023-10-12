@@ -9,6 +9,7 @@ be overridden in the derived classes:
     marking a simple goal complete and adding to the number of times a checklist goal has been completed. 
     It should return the point value associated with recording the event (keep in mind that it may contain 
     a bonus in some cases if a checklist goal was just finished, for example).
+    
     2. IsComplete - This method should return true if the goal is completed. The way you determine if a goal
     is complete is different for each type of goal.
     
@@ -50,6 +51,8 @@ public abstract class Goal
     protected string _description;
     protected int _points;
 
+    public bool Name { get; internal set; }
+
     public Goal(string name, string description, int points)
     {
         _shortName = name;
@@ -57,8 +60,23 @@ public abstract class Goal
         _points = points;
     }
 
-    public abstract void RecordEvent();
-    public abstract bool IsComplete();
+
+
+
+       // public abstract void RecordEvent(Goal goal)
+        //{
+       //     return Goal.IsComplete();
+       // }
+    
+
+
+    public abstract bool IsComplete()
+    {
+        _isComplete = true;
+        return _points;
+    }
+
+
     public virtual string GetDetailsString()
     {
         return $"[{(IsComplete() ? "X" : " ")}] {_shortName}: {_description}";
@@ -82,7 +100,8 @@ public class SimpleGoal : Goal
 
     public override bool IsComplete()
     {
-        return _isComplete;
+         _isComplete = true;
+        return _points;
     }
 
     public override string GetStringRepresentation()
@@ -92,3 +111,42 @@ public class SimpleGoal : Goal
 }
 
 // Similar changes would be made to the EternalGoal and ChecklistGoal classes.
+/*
+public class Goal
+{
+    public int Points { get; set; }
+    public bool IsComplete { get; set; }
+
+    public virtual int Complete()
+    {
+        IsComplete = true;
+        return Points;
+    }
+}
+
+public class ChecklistGoal : Goal
+{
+    public int CompletionCount { get; set; }
+    public int BonusPoints { get; set; }
+
+    public override int Complete()
+    {
+        CompletionCount++;
+        if (CompletionCount % 5 == 0) // Assuming bonus is awarded every 5 completions
+        {
+            return base.Complete() + BonusPoints;
+        }
+        return base.Complete();
+    }
+}
+
+public class GoalTracker
+{
+    public int RecordEvent(Goal goal)
+    {
+        return goal.Complete();
+    }
+}
+
+
+*/

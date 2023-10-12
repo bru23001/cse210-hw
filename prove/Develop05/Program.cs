@@ -61,59 +61,11 @@ using System;
 public class Program
 {
     public static void Main(string[] args)
-    {
+    {    
+   
         GoalManager manager = new GoalManager();
         manager.Start();
     }
-
-    public static void DisplayMenu()
-    {
-        Console.WriteLine("1. Display player info");
-        Console.WriteLine("2. List goal names");
-        Console.WriteLine("3. List goal details");
-        Console.WriteLine("4. Create goal");
-        Console.WriteLine("5. Record event");
-        Console.WriteLine("6. Save goals");
-        Console.WriteLine("7. Load goals");
-        Console.WriteLine("8. Exit");
-    }
-
-    public static void HandleUserInput(GoalManager manager)
-    {
-        int choice = Convert.ToInt32(Console.ReadLine());
-
-        switch (choice)
-        {
-            case 1:
-                manager.DisplayPlayerInfo();
-                break;
-            case 2:
-                manager.ListGoalNames();
-                break;
-            case 3:
-                manager.ListGoalDetails();
-                break;
-            case 4:
-                manager.CreateGoal();
-                break;
-            case 5:
-                manager.RecordEvent();
-                break;
-            case 6:
-                manager.SaveGoals();
-                break;
-            case 7:
-                manager.LoadGoals();
-                break;
-            case 8:
-                Environment.Exit(0);
-                break;
-            default:
-                Console.WriteLine("Invalid choice. Please try again.");
-                break;
-        }
-    }
 }
-
-
+    
 

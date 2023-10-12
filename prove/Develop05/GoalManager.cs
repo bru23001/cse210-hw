@@ -39,31 +39,63 @@ public class GoalManager
 
     public void Start()
     {
-        int userOption = 0;
-        while (userOption != 4)
+       int userOption = 0;
+        while (userOption != 8)
         {
-            Console.WriteLine("1. Simple Goal");
-            Console.WriteLine("2. Eternal Goal");
-            Console.WriteLine("3. Checklist Goal");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("1. Display player info");
+            Console.WriteLine("2. List goal names");
+            Console.WriteLine("3. List goal details");
+            Console.WriteLine("4. Create goal");
+            Console.WriteLine("5. Record event");
+            Console.WriteLine("6. Save goals");
+            Console.WriteLine("7. Load goals");
+            Console.WriteLine("8. Exit");
             Console.Write("Enter your choice: ");
-            userOption = Convert.ToInt32(Console.ReadLine());
+            userOption = int.Parse(Console.ReadLine());
 
+        
             if (userOption == 1)
             {
-                Console.WriteLine("You selected Option 1.");
-                    // Add code for Option 1.
+                GoalManager manager = new GoalManager();
+                manager.DisplayPlayerInfo();  
             }
+            
             else if (userOption == 2)
             {
-                Console.WriteLine("You selected Option 2.");
-                    // Add code for Option 2.
+                GoalManager manager = new GoalManager();
+                manager.ListGoalNames();  
             }
+            
             else if (userOption == 3)
             {
-                    Console.WriteLine("Exiting the program...");
+                GoalManager manager = new GoalManager();
+                manager.ListGoalDetails();    
             }
+            
             else if (userOption == 4)
+            {
+                GoalManager manager = new GoalManager();
+                manager.CreateGoal();    
+            }
+            else if (userOption == 5)
+            {
+                GoalManager manager = new GoalManager();
+                manager.RecordEvent();    
+            }        
+            
+            else if (userOption == 6)
+            {
+                GoalManager manager = new GoalManager();
+                manager.SaveGoals();    
+            }        
+            
+            else if (userOption == 7)
+            {
+                GoalManager manager = new GoalManager();
+                manager.LoadGoals();    
+            }
+        
+            else if (userOption == 8)
             {
                     Console.WriteLine("Exiting the program...");
             }    
@@ -82,9 +114,9 @@ public class GoalManager
 
     public void ListGoalNames()
     {
-        foreach (var goal in _goals)
+        foreach (Goal name in _goals)
         {
-            Console.WriteLine(goal.Name);
+            Console.WriteLine(name);
         }
     }
 
