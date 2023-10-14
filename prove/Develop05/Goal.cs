@@ -62,8 +62,8 @@ public abstract class Goal
 
 
 
-    public abstract void RecordEvent()
-    {
+    public abstract void RecordEvent();
+    /*{
         
         Console.WriteLine("These are the goals you can choose from: ");
         Console.WriteLine("1. Simple goal: ");
@@ -90,95 +90,26 @@ public abstract class Goal
             }
         }
 
-    }
+    }*/
 
        
        
-       Console.Write("Enter name of the goal: ");
-       Console.Write("")
        
-       //     return Goal.IsComplete();
-    }
+    
     
 
 
-    public abstract bool IsComplete()
-    {
-        _isComplete = true;
-        return _points;
-    }
+    public abstract bool IsComplete();
+    
 
-/*
+
     public virtual string GetDetailsString()
     {
-        return $"[{(IsComplete() ? "X" : " ")}] {_shortName}: {_description}";
+        string detailsString = $" [ ] {_shortName} - {_description}";
+
+        return detailsString;
     }
     public abstract string GetStringRepresentation();
 }
 
-public class SimpleGoal()
-{
-    private bool _isComplete;
 
-    public SimpleGoal(string name, string description, int points) : base(name, description, points)
-    {
-        _isComplete = false;
-    }
-
-    public override void RecordEvent()
-    {
-        _isComplete = true;
-    }
-
-    public override bool IsComplete()
-    {
-         _isComplete = true;
-        return _points;
-    }
-
-    public override string GetStringRepresentation()
-    {
-        return $"SimpleGoal: {_shortName}, {_description}, {_points}, {_isComplete}";
-    }
-}
-
-// Similar changes would be made to the EternalGoal and ChecklistGoal classes.
-/*
-public class Goal
-{
-    public int Points { get; set; }
-    public bool IsComplete { get; set; }
-
-    public virtual int Complete()
-    {
-        IsComplete = true;
-        return Points;
-    }
-}
-
-public class ChecklistGoal : Goal
-{
-    public int CompletionCount { get; set; }
-    public int BonusPoints { get; set; }
-
-    public override int Complete()
-    {
-        CompletionCount++;
-        if (CompletionCount % 5 == 0) // Assuming bonus is awarded every 5 completions
-        {
-            return base.Complete() + BonusPoints;
-        }
-        return base.Complete();
-    }
-}
-
-public class GoalTracker
-{
-    public int RecordEvent(Goal goal)
-    {
-        return goal.Complete();
-    }
-}
-
-
-*/
