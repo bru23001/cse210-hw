@@ -36,7 +36,7 @@ public class ChecklistGoal : Goal
     private int _target;
     private int _bonus;
 
-    public ChecklistGoal(string shortName, string description, int points, int target, int bonus) : base(shortName, description, points)
+    public ChecklistGoal(string name, string description, int points, int target, int bonus) : base(name, description, points)
     {
         _amountCompleted = 0;
         _target = target;
@@ -55,11 +55,12 @@ public class ChecklistGoal : Goal
 
     public override string GetDetailsString()
     {
-        return $"{base.GetDetailsString()} - Completed {_amountCompleted}/{_target} times";
+        string detailString = $" [ ] {_shortName} - {_description} Completed {_amountCompleted}/{_target} times - Bonus: {_bonus}";
+        return detailString;
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{base.GetDetailsString()}\nAmount Completed: {_amountCompleted}/{_target} - Bonus: {_bonus}";
+        
     }
 }

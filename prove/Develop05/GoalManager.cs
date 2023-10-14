@@ -62,8 +62,10 @@ public class GoalManager
             }
             
             else if (userOption == 2)
-            {
-                foreach(Goal goal in _goals)
+        {
+                ListGoalDetails();
+            
+/*                foreach(Goal goal in _goals)
                 {
                     string[] parts = goal.Split(",");
                     string name = parts[0];
@@ -73,8 +75,8 @@ public class GoalManager
                     int bonus = int.Parse(parts[4]);
                     bool isComplete = bool.Parse(parts[5]);
         }
-                
-                ListGoalNames();  
+*/                
+                //ListGoalNames();  
             }
             
             else if (userOption == 3)
@@ -113,7 +115,7 @@ public class GoalManager
     {
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine(goal);
+            Console.WriteLine(goal.name);
         }
     }
 
@@ -189,7 +191,7 @@ public class GoalManager
         Console.Write("Which goal did you accomplished? ");
         int goalType = int.Parse(Console.ReadLine());
 
-        if (goalType > 0 && goalType < _goals.Count)
+        if (goalType >= 0 && goalType < _goals.Count)
         {
             Console.WriteLine("Event recorded");
         }

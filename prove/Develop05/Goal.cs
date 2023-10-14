@@ -63,35 +63,7 @@ public abstract class Goal
 
 
     public abstract void RecordEvent();
-    /*{
-        
-        Console.WriteLine("These are the goals you can choose from: ");
-        Console.WriteLine("1. Simple goal: ");
-        Console.WriteLine("2. Eternal goal: ");
-        Console.WriteLine("3. Checklist goal: ");
-        Console.WriteLine("4. Return to Main Menu: ");
-        Console.Write("What option do you choose? ");
-        goalDetails=
-
-        int userOption = int.Parse(Console.ReadLine());
-        while (userOption != 4)
-        {
-            if (userOption == 1 || userOption == 2)
-            {
-                Console.Write("What tipe of goal you want to create? ");
-                int subMenuGoal = int.Parse(Console.ReadLine());
-                Console.Write("What's the name of your goal? ");
-                string subMenuName = Console.ReadLine();
-                Console.Write("What is a short description of the goal? ");
-                string subMenuDescription = Console.ReadLine();
-                Console.Write("How many points do I want associated to this goal? ");
-                int subMenuPoints = int.Parse(Console.ReadLine());
-                _goals.Add(subMenuGoal,subMenuName,subMenuDescription,subMenuPoints);
-            }
-        }
-
-    }*/
-
+    
        
        
        
