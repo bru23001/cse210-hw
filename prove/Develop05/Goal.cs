@@ -51,7 +51,6 @@ public abstract class Goal
     protected string _description;
     protected int _points;
 
-    public bool Name { get; internal set; }
 
     public Goal(string name, string description, int points)
     {
@@ -63,10 +62,43 @@ public abstract class Goal
 
 
 
-       // public abstract void RecordEvent(Goal goal)
-        //{
+    public abstract void RecordEvent()
+    {
+        
+        Console.WriteLine("These are the goals you can choose from: ");
+        Console.WriteLine("1. Simple goal: ");
+        Console.WriteLine("2. Eternal goal: ");
+        Console.WriteLine("3. Checklist goal: ");
+        Console.WriteLine("4. Return to Main Menu: ");
+        Console.Write("What option do you choose? ");
+        goalDetails=
+
+        int userOption = int.Parse(Console.ReadLine());
+        while (userOption != 4)
+        {
+            if (userOption == 1 || userOption == 2)
+            {
+                Console.Write("What tipe of goal you want to create? ");
+                int subMenuGoal = int.Parse(Console.ReadLine());
+                Console.Write("What's the name of your goal? ");
+                string subMenuName = Console.ReadLine();
+                Console.Write("What is a short description of the goal? ");
+                string subMenuDescription = Console.ReadLine();
+                Console.Write("How many points do I want associated to this goal? ");
+                int subMenuPoints = int.Parse(Console.ReadLine());
+                _goals.Add(subMenuGoal,subMenuName,subMenuDescription,subMenuPoints);
+            }
+        }
+
+    }
+
+       
+       
+       Console.Write("Enter name of the goal: ");
+       Console.Write("")
+       
        //     return Goal.IsComplete();
-       // }
+    }
     
 
 
@@ -76,7 +108,7 @@ public abstract class Goal
         return _points;
     }
 
-
+/*
     public virtual string GetDetailsString()
     {
         return $"[{(IsComplete() ? "X" : " ")}] {_shortName}: {_description}";
@@ -84,7 +116,7 @@ public abstract class Goal
     public abstract string GetStringRepresentation();
 }
 
-public class SimpleGoal : Goal
+public class SimpleGoal()
 {
     private bool _isComplete;
 

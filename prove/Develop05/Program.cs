@@ -49,9 +49,56 @@ example, a level 13 Ninja Unicorn). The idea is to engage the part of our brain 
         § There are lots of ways to show creativity in this assignment. Pick anything that sounds fun to you!
         
     Report on what you have done to exceed requirements by adding a description of it in a comment in the Program.cs file.
+===============================
+You have 0 points
 
-        
+Menu options:
+1. Create New Goal
+2. List Goals
+3. SAve Goals
+4. Load Goals
+5. Record Event
+6. Quit
+Select a choice from the menu: 
 
+OPTION 1.---------------------------------
+The types of Goals are:        
+1.1 Simple Goal
+1.2 Eternal Goal
+1.3 Checklist Goal
+
+(1.1 and 1.2)
+What tipe of goal you want to create? 1
+What's the name of your goal? Give a talk
+What's a short description of the goal? Speak in Sacrament meeting when asked
+How many points do I want associated to this goal? 100
+
+(1.3)
+Same as 1.1 and 1.2
+How many times does this goal need to be accomplished for a bonus? 3
+What is the bonus for accomplishing it that many times? 500
+
+OPTION 2.----------------------------------
+The goals are:
+1. [X] Give a talk (Speak in Sacrament ...)
+2. [ ] Study the Scriptures (Study for at least 10 minutes)
+3. [X] Attend the temple (Attend and perform any ordinance) -- Currently completed: 0/3
+OPTION 3.----------------------------------
+What's the file name for the goal file? goals.txt
+OPTION 4.----------------------------------
+What's the file name for the goal file? goals.txt
+OPTION 5.----------------------------------
+Which goal did you accomplished? 2
+Congratulations! You have earned 50 points!
+You now have 50 points.
+OPTION 6.----------------------------------
+
+
+goals.txt-----------------------------------
+1 0
+2 SimpleGoal:Give a talk,Speak in Sacrament meeting when asked,100,false
+3 EternalGoal:Study the Scriptures,Study for at least 10 minutes,50
+4 ChecklistGoal:Attend the temple,Attend and perform any ordinance,50,500,3,0
 	
 
 */

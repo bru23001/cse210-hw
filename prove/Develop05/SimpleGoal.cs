@@ -15,7 +15,7 @@ CONSTRUCTORS:
 
 */
 
-public class SimpleGoal : Goal
+public class SimpleGoal
 {
     private bool _isComplete;
 

@@ -33,31 +33,28 @@ public class GoalManager
 
     public GoalManager()
     {
-        _goals = new List<Goal>();
+        List<Goal> _goals = new List<Goal>();
         _score = 0;
     }
 
     public void Start()
     {
        int userOption = 0;
-        while (userOption != 8)
+        while (userOption != 6)
         {
-            Console.WriteLine("1. Display player info");
-            Console.WriteLine("2. List goal names");
-            Console.WriteLine("3. List goal details");
-            Console.WriteLine("4. Create goal");
+            Console.WriteLine("1. Create a new goal");
+            Console.WriteLine("2. List goals ");
+            Console.WriteLine("3. Save goals to a file");
+            Console.WriteLine("4. Load Goals from a file");
             Console.WriteLine("5. Record event");
-            Console.WriteLine("6. Save goals");
-            Console.WriteLine("7. Load goals");
-            Console.WriteLine("8. Exit");
+            Console.WriteLine("6. Quit");
             Console.Write("Enter your choice: ");
             userOption = int.Parse(Console.ReadLine());
 
         
             if (userOption == 1)
             {
-                GoalManager manager = new GoalManager();
-                manager.DisplayPlayerInfo();  
+                CreateGoal();    
             }
             
             else if (userOption == 2)
@@ -128,10 +125,36 @@ public class GoalManager
         }
     }
 
-    public void CreateGoal()
+    private void CreateGoal()
     {
-        // Ask user for goal details and add to list.
+        
+        Console.WriteLine("These are the goals you can choose from: ");
+        Console.WriteLine("1. Simple goal: ");
+        Console.WriteLine("2. Eternal goal: ");
+        Console.WriteLine("3. Checklist goal: ");
+        Console.WriteLine("4. Return to Main Menu: ");
+        Console.Write("What option do you choose? ");
+        goalDetails=
+
+        int userOption = int.Parse(Console.ReadLine());
+        while (userOption != 4)
+        {
+            if (userOption == 1 || userOption == 2)
+            {
+                Console.Write("What tipe of goal you want to create? ");
+                int subMenuGoal = int.Parse(Console.ReadLine());
+                Console.Write("What's the name of your goal? ");
+                string subMenuName = Console.ReadLine();
+                Console.Write("What is a short description of the goal? ");
+                string subMenuDescription = Console.ReadLine();
+                Console.Write("How many points do I want associated to this goal? ");
+                int subMenuPoints = int.Parse(Console.ReadLine());
+                _goals.Add(subMenuGoal,subMenuName,subMenuDescription,subMenuPoints);
+            }
+        }
+
     }
+
 
     public void RecordEvent()
     {
