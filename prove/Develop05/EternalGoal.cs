@@ -25,13 +25,15 @@ CONSTRUCTORS:
 
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int points) : base(name, description, points)
+    public EternalGoal(int goalType,string name, string description, int points) : base(name, description, points)
     {
 
     }
+    
     public override void RecordEvent()
+
     {
-        // For an eternal goal, recording an event doesn't change its completion status.
+        
     }
 
     public override bool IsComplete()
@@ -42,7 +44,7 @@ public class EternalGoal : Goal
 
     public override string GetStringRepresentation()
     {
+        return $"EternalGoal: {_shortName}, {_description}, {_points}";
+    }    
         
-        
-        return $"{base.GetDetailsString()} - Completed";}
 }

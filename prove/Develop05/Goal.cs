@@ -50,7 +50,7 @@ public abstract class Goal
     protected string _shortName;
     protected string _description;
     protected int _points;
-
+    internal string name;
 
     public Goal(string name, string description, int points)
     {
@@ -77,11 +77,11 @@ public abstract class Goal
 
     public virtual string GetDetailsString()
     {
-        string detailsString = $" [ ] {_shortName} - {_description}";
-
-        return detailsString;
+       return $"[{(_points > 0 ? "x" : " ")}] {_shortName}: {_description}";
     }
     public abstract string GetStringRepresentation();
+
+    
 }
 
 
