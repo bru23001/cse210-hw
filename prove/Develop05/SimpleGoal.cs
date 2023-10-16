@@ -30,12 +30,10 @@ using System.ComponentModel;
 public class SimpleGoal : Goal
 {
     private bool _isComplete;
-    private int _goalType;
-
-    public SimpleGoal(int goalType, string name, string description, int points) : base(name, description, points)
+    
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
     {
         _isComplete = false;
-        _goalType = goalType;
     }
 
    
@@ -51,6 +49,6 @@ public class SimpleGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"SimpleGoal: {_goalType}, {_shortName}, {_description}, {_points}, {_isComplete}";
+        return $"SimpleGoal: {_isComplete}, {_shortName}, {_description}, {_points}";
     }
 }

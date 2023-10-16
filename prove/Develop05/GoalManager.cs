@@ -104,50 +104,53 @@ public class GoalManager
     {
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine(goal.name);
+            Console.WriteLine(goal.Name);
         }
     }
 
 
     public void CreateGoal()
     {
-        Goal goal = null;
+        int goalType = 0;
        
-
-        Console.WriteLine("These are the goals you can choose from: ");
-        Console.WriteLine("1. Simple goal: ");
-        Console.WriteLine("2. Eternal goal: ");
-        Console.WriteLine("3. Checklist goal: ");
-        Console.WriteLine("4. Return to Main Menu: ");
-        Console.Write("What option do you choose? ");
-        int goalType = int.Parse(Console.ReadLine());
-        
-
-        Console.Write("Enter the name of the goal: ");
-        string name = Console.ReadLine();
-
-        Console.Write("Enter the description of the goal: ");
-        string description = Console.ReadLine();
-
-        Console.Write("Enter the points of the goal: ");
-        int points = int.Parse(Console.ReadLine());
-
-        
-
         while (goalType != 4)
         {
+            Console.WriteLine("These are the goals you can choose from: ");
+            Console.WriteLine("1. Simple goal: ");
+            Console.WriteLine("2. Eternal goal: ");
+            Console.WriteLine("3. Checklist goal: ");
+            Console.WriteLine("4. Return to Main Menu: ");
+            Console.Write("What option do you choose? ");
+            goalType = int.Parse(Console.ReadLine());
+
+            if (goalType == 4)
+            {
+                return;
+            }
+        
+
+            Console.Write("Enter the name of the goal: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter the description of the goal: ");
+            string description = Console.ReadLine();
+
+            Console.Write("Enter the points of the goal: ");
+            int points = int.Parse(Console.ReadLine());
+
+            Goal goal;
             
             if (goalType == 1)
             {
-                
-                goal = new SimpleGoal(goalType,name, description, points);
-                
+                goal = new SimpleGoal(name, description, points);
+                _goals.Add(goal);
                 
             }
 
             else if (goalType == 2)
             {
-                goal = new EternalGoal(goalType,name, description, points);
+                goal = new EternalGoal(name, description, points);
+                _goals.Add(goal);
             }
 
             else if (goalType == 3)
@@ -158,18 +161,16 @@ public class GoalManager
                 Console.Write("What is the bonus for accomplishing it that many times? ");
                 int bonus = int.Parse(Console.ReadLine());
 
-                goal = new ChecklistGoal(goalType,name, description, points,target,bonus);
+                goal = new ChecklistGoal(name, description, points,target,bonus);
+                _goals.Add(goal);
             }
 
             else
             {
                 Console.WriteLine("Invalid option");
                 return;
-            }
-
-            
-            _goals.Add(goal);
-           
+            }  
+          
         }
 
     }
@@ -187,6 +188,7 @@ public class GoalManager
             {
                 goal.RecordEvent();
                 Console.WriteLine("Event recorded");
+                return;
             }
 
         else
@@ -232,7 +234,19 @@ public class GoalManager
             Goal goal;
             if (goalType == 1)
             {
-                goal = new SimpleGoal(goalType,name,description,points);
+                goal = new SimpleGoal(name,description,points);
+                _goals.Add(goal);
+            }
+            else if (goalType == 2)
+            {
+                goal = new EternalGoal(name,description,points);
+                _goals.Add(goal);
+            } 
+
+            else if (goalType == 3)
+            {
+                goal = new ChecklistGoal(name,description,points,target,bonus);
+                _goals.Add(goal);
             }
 
 
