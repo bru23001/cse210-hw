@@ -44,7 +44,6 @@ CONSTRUCTORS:
 
 */
 
-
 public abstract class Goal
 {
     protected string _shortName;
@@ -65,6 +64,7 @@ public abstract class Goal
     }
 
     public abstract void RecordEvent();
+
     
        
        

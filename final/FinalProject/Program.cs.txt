@@ -302,4 +302,283 @@ class Program
             Console.WriteLine("Invalid input. Please enter a number.");
         }
     }
+/*
+    static void ItemScanMenu()
+{
+    FileManager fileManager = new FileManager("items.txt");
+    ItemScan itemScan = new ItemScan();
+    ItemSearch itemSearch = new ItemSearch(fileManager);
+    DetailsDisplay detailsDisplay = new DetailsDisplay();
+
+    Console.WriteLine("Item Scan Menu:");
+    Console.WriteLine("1. Scan Item");
+    Console.Write("Enter your choice: ");
+
+    try
+    {
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 1)
+        {
+            string barcode = itemScan.ScanItem(); // Ensure this method returns a string
+            Item item = itemSearch.SearchItem(barcode); // Pass only one argument
+            if (item != null)
+            {
+                Console.WriteLine("Item scanned:");
+                detailsDisplay.Display("Item Details:", new List<Item> { item });
+            }
+            else
+            {
+                Console.WriteLine("No item found with that barcode.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice. Please try again.");
+        }
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Invalid input. Please enter a number.");
+    }
 }
+
+    static void PantryManagerMenu()
+    {
+        FileManager fileManager = new FileManager("items.txt");
+        PantryManager pantryManager = new PantryManager(fileManager);
+        DetailsDisplay detailsDisplay = new DetailsDisplay();
+
+        Console.WriteLine("Pantry Manager Menu:");
+        Console.WriteLine("1. Display Items");
+        Console.Write("Enter your choice: ");
+
+        try
+        {
+            int choice = int.Parse(Console.ReadLine());
+
+            if (choice == 1)
+            {
+                detailsDisplay.Display("Pantry Items:", pantryManager.Items);
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+            }
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+        }
+    }
+
+    static void RecipeMenu()
+    {
+        while (true)
+        {
+            Console.WriteLine("Recipe Menu:");
+            Console.WriteLine("1. Recipe Manager");
+            Console.WriteLine("2. Recipe Search");
+            Console.Write("Enter your choice: ");
+
+            try
+            {
+                int choice = int.Parse(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        RecipeManagerMenu();
+                        break;
+
+                    case 2:
+                        RecipeSearchMenu();
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+        }
+    }
+
+    
+static void RecipeManagerMenu()
+{
+    FileManager fileManager = new FileManager("recipes.txt");
+    RecipeManager recipeManager = new RecipeManager(fileManager);
+    DetailsDisplay detailsDisplay = new DetailsDisplay();
+
+    while (true)
+    {
+        Console.WriteLine("Recipe Manager Menu:");
+        Console.WriteLine("1. Add Recipe");
+        Console.WriteLine("2. Edit Recipe");
+        Console.WriteLine("3. Delete Recipe");
+        Console.WriteLine("4. Display Recipes");
+        Console.Write("Enter your choice: ");
+
+        try
+        {
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    // Call AddRecipe method here
+                    break;
+
+                case 2:
+                    // Call EditRecipe method here
+                    break;
+
+                case 3:
+                    // Call DeleteRecipe method here
+                    break;
+
+                case 4:
+                    detailsDisplay.Display("Recipes:", recipeManager.Recipes);
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+        }
+    }
+}
+
+static void RecipeSearchMenu()
+{
+    FileManager fileManager = new FileManager("recipes.txt");
+    RecipeSearch recipeSearch = new RecipeSearch(fileManager);
+    DetailsDisplay detailsDisplay = new DetailsDisplay();
+
+    Console.WriteLine("Recipe Search Menu:");
+    Console.WriteLine("1. Search by Name");
+    Console.WriteLine("2. Search by Ingredient");
+    Console.Write("Enter your choice: ");
+
+    try
+    {
+        int choice = int.Parse(Console.ReadLine());
+
+        switch (choice)
+        {
+            case 1:
+                // Call SearchByName method here
+                break;
+
+            case 2:
+                // Call SearchByIngredient method here
+                break;
+
+            default:
+                Console.WriteLine("Invalid choice. Please try again.");
+                break;
+        }
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Invalid input. Please enter a number.");
+    }
+}
+
+static void MealPlanMenu()
+{
+    FileManager fileManager = new FileManager("recipes.txt");
+    MealPlan mealPlan = new MealPlan(fileManager);
+    DetailsDisplay detailsDisplay = new DetailsDisplay();
+
+    while (true)
+    {
+        Console.WriteLine("Meal Plan Menu:");
+        Console.WriteLine("1. Plan Meals");
+        Console.WriteLine("2. Display Meals");
+        Console.Write("Enter your choice: ");
+
+        try
+        {
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    // Call PlanMeals method here
+                    break;
+
+                case 2:
+                    detailsDisplay.Display("Meals:", mealPlan.Meals);
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+        }
+    }
+}
+
+static void ShoppingListMenu()
+{
+    FileManager fileManager = new FileManager("items.txt");
+    ShoppingList shoppingList = new ShoppingList(fileManager);
+    DetailsDisplay detailsDisplay = new DetailsDisplay();
+
+    while (true)
+    {
+        Console.WriteLine("Shopping List Menu:");
+        Console.WriteLine("1. Add Item");
+        Console.WriteLine("2. Edit Item");
+        Console.WriteLine("3. Delete Item");
+        Console.WriteLine("4. Display Items");
+        Console.Write("Enter your choice: ");
+
+        try
+        {
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    // Call AddItem method here
+                    break;
+
+                case 2:
+                    // Call EditItem method here
+                    break;
+
+                case 3:
+                    // Call DeleteItem method here
+                    break;
+
+                case 4:
+                    detailsDisplay.Display("Shopping List Items:", shoppingList.Items);
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+        }
+    }
+}
+}
+*/

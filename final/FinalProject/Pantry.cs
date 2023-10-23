@@ -1,0 +1,45 @@
+/*
+Pantry Class: This class manages instances of other classes like ItemScan, ItemSearch, 
+and ItemManager. It has a method for updating the quantity of an item.
+
+*/
+
+public class Pantry
+{
+    private FileManager fileManager = new FileManager("file_path");
+    private ItemScan itemScan = new ItemScan();
+    private ItemSearch itemSearch;
+    private ItemManager itemManager;
+    private PantryManager pantryManager; // Declare pantryManager here
+    DetailsDisplay detailsDisplay = new DetailsDisplay(itemManager); // Declare detailsDisplay before using
+    itemManager = new ItemManager(itemScan, itemSearch, pantryManager, detailsDisplay);
+    itemManager.DetailsDisplay = detailsDisplay;
+
+
+    public Pantry() // Add a constructor for Pantry
+    {
+        
+        pantryManager = new PantryManager(fileManager); // Pass fileManager as an argument
+        itemSearch = new ItemSearch(fileManager);
+       // itemManager = new ItemManager(ItemScan itemScan, ItemSearch itemSearch, PantryManager pantryManager, DetailsDisplay detailsDisplay); // Instantiate ItemManager before DetailsDisplay
+        var detailsDisplay = new DetailsDisplay(itemManager); // Pass itemManager as an argument
+       // itemManager.DetailsDisplay = detailsDisplay; // Set the DetailsDisplay property of ItemManager    
+    }
+
+    public void UpdateQuantity(int newQuantity)
+    {
+        //string barcode = itemScan.ScanItem(); // Ensure ScanItem returns a string
+
+        int barcode = 0;
+        Item item = itemSearch.SearchItem(barcode); // Change SearchItems to SearchItem
+
+        // Ensure DetailsDisplay is a method in ItemManager and takes an Item as a parameter
+        item.DisplayDetails("keyword");
+        
+        item.Quantity = newQuantity;
+
+        itemManager.DisplayItemDetails(item); // Use the DisplayItemDetails method of the ItemManager class
+        return;
+    }
+}
+
